@@ -1,8 +1,8 @@
-/**
- * author: bobo
- * create time: 2019/3/26 5:14 PM
- * email: jqbo84@163.com
- */
+///
+/// author: bobo
+/// create time: 2019/3/26 5:14 PM
+/// email: jqbo84@163.com
+///
 
 /// 三斜杠文档注释
 /// 返回类型void可以省略， 省略后返回值为null
@@ -25,27 +25,27 @@ void main() {
 
 //var声明一个初始化的变量，变量的类型不能再改变
   var variable1 =
-      'dongnao'; //变量是一个引用。名字为 name 的变量引用了 一个内容为 “dongnao” 的 String 对象。
+      'bobo'; //变量是一个引用。名字为 name 的变量引用了 一个内容为 “bobo” 的 String 对象。
 //  variable1 = 123;//变量初始化后，name变量的类型被推断为String类型，其类型不能再改变
 
   //dynamic和Object声明的变量初始化后，变量的类型仍可改变
-  dynamic variable2 = 'dongnao';
+  dynamic variable2 = 'bobo';
   variable2 = 123;
 //  variable2.test();//调用不存在的test()方法，编译通过，运行报异常。编译阶段不检查类型
-  Object variable3 = 'dongnao';
+  Object variable3 = 'bobo';
   variable3 = 123;
-//  variable3.test();//调用不存在的test()方法，编译不通过。编译阶段检查类型
+//  variable3.test();//调用不存在的test()方法，报错，编译不通过。编译阶段检查类型
 
   //使用确定类型显示声明变量，变量的类型不能再改变
   String name3;
-  name3 = 'dongnao';
-//  name3 = 123;//变量的类型不能再改变
+  name3 = 'bobo';
+//  name3 = 123;//编译报错，变量的类型不能再改变
 
-//var:如果没有初始值，可以变成任何类型
-//dynamic:动态任意类型，编译阶段不检查类型
-//Object:动态任意类型，编译阶段检查检查类型
-//区别：
-//唯一区别 var 如果有初始值，类型被锁定
+///var:如果没有初始值，可以变成任何类型
+///dynamic:动态任意类型，编译阶段不检查类型
+///Object:动态任意类型，编译阶段检查检查类型
+///区别：
+///唯一区别 var 如果有初始值，类型被锁定
 
 
   /// ---------------------------------默认值--------------------------------
@@ -55,18 +55,18 @@ void main() {
 
   /// ---------------------------------final和const--------------------------------
   //1.  被final或者const修饰的变量，变量类型可以省略
-  final fVariable1 = 'dongnao';
-//  final String fVariable1 = 'dongnao';
-  const cVariable1 = 'dongnao';
-//  const String cVariable1 = 'dongnao';
+  final fVariable1 = 'bobo';
+//  final String fVariable1 = 'bobo';
+  const cVariable1 = 'bobo';
+//  const String cVariable1 = 'bobo';
 
   //2.  被 final 或 const 修饰的变量无法再去修改其值。
 //   fVariable1 = 'damon';
 //   cVariable1 = 'damon';
 
   //3.  final或const不能和var同时使用。
-//  final var fVariable1 = 'dongnao';
-//  const var fVariable1 = 'dongnao';
+//  final var fVariable1 = 'bobo';
+//  const var fVariable1 = 'bobo';
 
   //4.  如果是类级别常量，使用static const
   DateTime; //可参照DateTime static const int monday = 1;
@@ -78,7 +78,8 @@ void main() {
 
   //6.  const赋值 申明可省略
   const List clist = [1, 2, 3];
-//  const List clist = const [1, 2, 3];//dart 2之前，const赋值必须用const声明
+  ///dart 2之前，const赋值必须用const声明
+//  const List clist = const [1, 2, 3];
 
   //7.  可以更改非final,非const变量的值，即使它曾经具有const值
   var varList = const [1, 2, 3];
@@ -89,6 +90,11 @@ void main() {
 //  finalList = [1];
 
   //8.  const导致的不可变性是可传递的
+///  Dart中可以直接打印list包括list的元素，List也是对象。java中直接打印list结果是地址值。
+///  Dart中List的下标索引和java一样从0开始。
+///  和java一样支持泛型。
+///  有增删改查，支持倒序，自带排序、洗牌，可使用+将两个List合并。
+
   final List ls = [1, 2, 3];
   ls[1] = 4;
   print(ls);
@@ -113,6 +119,7 @@ void main() {
   const aConstString = 'a constant string';
   const aConstNull = null;
   const validConstString =
-      '$aConstNum, $aConstBool, $aConstString, $aConstNull';
+  '$aConstNum, $aConstBool, $aConstString, $aConstNull';
   print(validConstString); //使用计算结果为null或数字，字符串或布尔值的编译时常量的插值表达式
+
 }
