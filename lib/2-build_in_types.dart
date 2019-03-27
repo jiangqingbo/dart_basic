@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 ///
 /// author: jiangqingbo
 /// create time: 2019/3/26 6:15 PM
@@ -66,6 +68,17 @@ main() {
   print('-----------------------Lists------------------------');
   //声明
   //自动长度
+
+  /// 定义list
+  List<String> listlist = List(); // 不推荐
+  var lsls = [1,2,3,4,5,6]; // 推荐
+  /// 链式操作
+  print('--' * 50);
+  lsls..add(30)
+    ..add(20)
+    ..add(40);
+  lsls.forEach((item) => print(item));
+
   List growableList = List();
 //  List growableList = new List()..length = 3;
   growableList..add(1)..add(2)..add('bobo');
@@ -166,6 +179,19 @@ main() {
 //  print(map.keys); //key 集合
 //  print(map.values); //value集合
 
+  /// 定义map
+  var map2 = <String,dynamic>{
+    'name': 'bobo',
+    'age': 20,
+    'weight': 120
+  };
+  print(map2);
+  var jsonStr = jsonEncode(map2);
+  print('jsonStr: $jsonStr');
+
+  map2['address'] = 'hu nan chang sha';
+  map2.forEach((key,val)=> print("$key : $val"));
+
   //常用方法 增删改查
   print('-----------------------Maps------------------------');
 
@@ -195,6 +221,17 @@ main() {
   print('set1 set2并集 :${union}'); //返回set1和set2的并集
   set2.retainAll(['jiangqingbo', 'flutter']); //只保留(要保留的元素要在原set中存在）
   print('set2只保留dongnao flutter :${set2}');
+
+  /// 元素不可重复列表
+  Set<String> set3 = {'1','2','3','3','2'};
+  print(set3); // 会去除重复元素
+
+  set3.forEach((item) => print(item));
+  print('-' * 80);
+  set3..add('123')
+    ..add('456');
+  set3.forEach((item){print(item);});
+
   print('-----------------------Sets------------------------');
 
   /// ---------------------------------Runes符号字符--------------------------------
