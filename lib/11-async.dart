@@ -27,29 +27,29 @@ main() async {
   /// 4.绘制图形，处理鼠标点击，处理文件IO等都是在Event Queue里完成的。
 
   //then catchError whenComplete
-  new Future(() => futureTask()) //  异步任务的函数
-          .then((m) => "a:$m") //   任务执行完后的子任务
-          .then((m) => print('a$m')) //  其中m为上个任务执行完后的返回的结果
-          .then((_) => new Future.error('error'))
-          .then((m) => print('damon'))
-          .whenComplete(
-              () => print('whenComplete1')) //不是最后执行whenComplete，通常放到最后回调
-
-//      .catchError((e) => print(e))//如果不写test默认实现一个返回true的test方法
-          .catchError((e) => print('catchError:' + e), test: (Object o) {
-    print('test:' + o);
-    return true; //返回true，会被catchError捕获
-//        return false; //返回false，继续抛出错误，会被下一个catchError捕获
-  }).catchError((e) => print('catchError2:' + e))
-      .then((m) => print('dongnao'))
-      .whenComplete(() => print('finish'))
-      ;
+//  new Future(() => futureTask()) //  异步任务的函数
+//          .then((m) => "a:$m") //   任务执行完后的子任务
+//          .then((m) => print('a$m')) //  其中m为上个任务执行完后的返回的结果
+//          .then((_) => new Future.error('error'))
+//          .then((m) => print('damon'))
+//          .whenComplete(
+//              () => print('whenComplete1')) //不是最后执行whenComplete，通常放到最后回调
+//
+////      .catchError((e) => print(e))//如果不写test默认实现一个返回true的test方法
+//          .catchError((e) => print('catchError:' + e), test: (Object o) {
+//    print('test:' + o);
+//    return true; //返回true，会被catchError捕获
+////        return false; //返回false，继续抛出错误，会被下一个catchError捕获
+//  }).catchError((e) => print('catchError2:' + e))
+//      .then((m) => print('dongnao'))
+//      .whenComplete(() => print('finish'))
+//      ;
 
   // Future
 //  testFuture();
 
   //scheduleMicrotask
-//  testScheduleMicrotask();
+  testScheduleMicrotask();
 }
 
 //then catchError whenComplete
@@ -121,12 +121,14 @@ void testFuture() {
 /// 3.为了保持你app的可响应性，尽量不要将大计算量的任务放入这两个队列。
 /// 4.大计算量的任务放入额外的isolate中。
 void testScheduleMicrotask() {
-  //918346572
+  //9 1 8 3 10 7 13 4 6 5 11 12 2
   scheduleMicrotask(() => print('s1'));
 
   new Future.delayed(new Duration(seconds: 1), () => print('s2'));
 
-  new Future(() => print('s3')).then((_) {
+  new Future(() => print('s3'))
+      .then((_) => new Future(() => print('s13')))
+      .then((_) {
     print('s4');
     scheduleMicrotask(() => print('s5'));
   }).then((_) => print('s6'));
